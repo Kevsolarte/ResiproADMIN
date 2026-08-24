@@ -1,0 +1,205 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* ---------------------------------------------------------------------------
+   Color tokens, in two levels (same system as Linkso).
+   Tokens de color, en dos niveles (el mismo sistema de Linkso).
+
+   :root          -> the raw values / los valores crudos
+   @theme inline  -> exposes them to Tailwind as bg-*, text-*, border-*
+                     se los expone a Tailwind como bg-*, text-*, border-*
+--------------------------------------------------------------------------- */
+
+@theme inline {
+	--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
+	--radius-2xl: 24px;
+
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-soft: var(--primary-soft);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary-hover: var(--primary-hover);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-warning: var(--warning);
+	--color-success: var(--success);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-panel: var(--panel);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-active: var(--sidebar-active);
+	--color-sidebar-muted: var(--sidebar-muted);
+	--color-table-cell: var(--table-cell);
+	--color-stat-card-label: var(--stat-card-label);
+}
+
+:root {
+	--background: #ffffff;
+	--foreground: #2a2433;
+	--card: #ffffff;
+	--card-foreground: #2a2433;
+	--popover: #ffffff;
+	--popover-foreground: #2a2433;
+
+	/* Resiproco brand violet / El violeta de marca de Resiproco. */
+	--primary: #6d28d9;
+	--primary-hover: #5b21b6;
+	--primary-soft: #ede9fe;
+	/* Violet is dark, so its label is white / El violeta es oscuro, la etiqueta va blanca. */
+	--primary-foreground: #ffffff;
+
+	--secondary: #f6f5f8;
+	--secondary-foreground: #2a2433;
+	--muted: #f5f4f7;
+	--muted-foreground: #7c7689;
+	--accent: #e9e1fe;
+	--accent-foreground: #5b21b6;
+
+	--destructive: #c94a4a;
+	--destructive-foreground: #ffffff;
+	--warning: #d49a30;
+	--success: #4caf7c;
+
+	--border: #dcd8e3;
+	--input: #dcd8e3;
+	--ring: #6d28d9;
+
+	/* Panel shell: sidebar and content share it, white cards sit on top.
+	   Shell del panel: sidebar y contenido lo comparten, las cards blancas van encima. */
+	--panel: #f5f3f8;
+	--sidebar: #fcfcfd;
+	--sidebar-active: #e9e1fe;
+	--sidebar-muted: #635d70;
+
+	--table-cell: #1a1720;
+	--stat-card-label: #6f6a7a;
+}
+
+/* ---------------------------------------------------------------------------
+   Base layer / Capa base
+--------------------------------------------------------------------------- */
+
+@layer base {
+	/* Tailwind v4 defaults borders to currentColor; bring back our token.
+	   Tailwind v4 usa currentColor por defecto; volvemos a nuestro token. */
+	* {
+		border-color: var(--color-border);
+	}
+
+	html,
+	body {
+		font-family: var(--font-sans);
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+		font-size: 16px;
+		line-height: 1.5;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	input,
+	textarea,
+	button,
+	select {
+		font-family: inherit;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+   Typography spec / Especificación tipográfica
+
+   Deliberately unlayered: Tailwind utilities live in @layer utilities, and
+   unlayered CSS always wins over layered CSS, so no !important is needed.
+   Sin capa a propósito: las utilidades de Tailwind viven en @layer utilities,
+   y el CSS sin capa siempre les gana, así que no hace falta !important.
+--------------------------------------------------------------------------- */
+
+/* Page title / Título de página (Proyectos, Colaboradores...) */
+.page-title {
+	font-weight: 600;
+	color: var(--color-foreground);
+	font-size: 17px;
+	line-height: 21px;
+}
+
+@media (max-width: 767px) {
+	.page-title {
+		font-size: 14px;
+		line-height: 18px;
+	}
+}
+
+/* Stat card eyebrow / Etiqueta de la stat card (PROYECTOS, POR COBRAR...) */
+.stat-card-label {
+	font-weight: 500;
+	color: var(--color-stat-card-label);
+	font-size: 9px;
+	line-height: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+/* Stat card number / Número de la stat card */
+.stat-card-value {
+	font-weight: 600;
+	color: var(--color-table-cell);
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: -0.01em;
+}
+
+/* Table headers / Encabezados de tabla */
+.table-header-custom {
+	font-weight: 600;
+	color: var(--color-foreground);
+	font-size: 10px;
+	line-height: 12px;
+}
+
+/* Table cells / Celdas de tabla */
+.table-cell-custom {
+	font-weight: 500;
+	color: var(--color-table-cell);
+	font-size: 9px;
+	line-height: 11px;
+}
+
+/* Sidebar links / Links del sidebar */
+.sidebar-link-custom {
+	font-weight: 500;
+	color: var(--color-foreground);
+	font-size: 10px;
+	line-height: 17px;
+}
+
+/* Active row: 600 against its siblings' 500, so weight alone marks it.
+   Fila activa: 600 contra el 500 de las demás, el peso solo ya la marca. */
+.sidebar-link-active {
+	font-weight: 600;
+}
+
+/* Sidebar group eyebrows / Títulos de grupo del sidebar (GENERAL, PAGOS...) */
+.sidebar-group-label {
+	font-weight: 600;
+	color: var(--color-sidebar-muted);
+	font-size: 10px;
+	line-height: 14px;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}

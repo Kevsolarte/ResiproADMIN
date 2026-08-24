@@ -1,0 +1,18 @@
+# PocketBase data directory: the SQLite database, uploaded files, superuser
+# password hashes and auth tokens. Never commit it.
+# Directorio de datos de PocketBase: la base SQLite, los archivos subidos, los
+# hashes de contraseña de superusuario y los tokens. Nunca se commitea.
+pb_data/
+
+# Compiled binary. `go build` names it after the module.
+# Binario compilado. `go build` lo nombra según el módulo.
+resiproco-interno
+resiproco-interno.exe
+*.exe
+
+# Coverage output / salida de cobertura
+*.out
+
+# OS
+.DS_Store
+Thumbs.db
